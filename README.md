@@ -13,7 +13,7 @@ Run `npm run verify` for lint, tests, audit and production build.
 A normal advertiser/network admin account cannot self-promote. An authorized backend operator runs:
 
 ```
-python scripts/grant_owner.py --email pushkar@vedhaka.com
+python scripts/grant_owner.py --email owner@example.com
 ```
 
 Run this against the intended backend database. It requires an existing active,
@@ -48,7 +48,7 @@ For the separate hosted app, add its exact HTTPS production origin to backend CO
 
 ### Activation checklist (left to the operator)
 
-1. In Render backend Environment, set INITIAL_PLATFORM_OWNER_EMAIL=pushkar@vedhaka.com and deploy. This requires an existing active, verified account and never creates a password.
+1. In Render backend Environment, set INITIAL_PLATFORM_OWNER_EMAIL=owner@example.com and deploy. This requires an existing active, verified account and never creates a password.
 2. Preserve existing backend CORS_ORIGINS and append https://super-admin-frontend-tracking-platf.vercel.app for refresh/logout checks.
 3. Sign in using the existing password. After verifying access, remove INITIAL_PLATFORM_OWNER_EMAIL; the database role is retained.
 4. For automatic Vercel deployments, grant its existing GitHub app access only to this repository, then connect it in the project's Settings / Git. GitHub CI already runs on pushes. Account activation and GitHub-app permission changes are left to the user.
