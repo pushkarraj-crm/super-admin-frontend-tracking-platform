@@ -18,7 +18,7 @@ python scripts/grant_owner.py --email pushkar@vedhaka.com
 
 Run this against the intended backend database. It requires an existing active,
 verified account, keeps its password, revokes sessions/API keys and records an audit.
-It is not executed automatically at startup. In company database mode it creates
+It is not executed automatically by default. On Render Free, the operator can explicitly set INITIAL_PLATFORM_OWNER_EMAIL to the intended existing account, deploy once, verify access and then remove the variable. In company database mode it creates
 control-plane access from one existing verified company identity; use `--company`
 when needed to disambiguate. The owner signs in on the control-domain super admin app.
 Never put the user's password or database credentials in this repository.
@@ -43,3 +43,5 @@ uses the same-origin `/api` proxy. Do not set a company slug on the control-plan
 app. GitHub Actions verifies Node 24 tests/build/audit on each push.
 
 This testing deployment requires no live billing or external provider credentials.
+
+For the separate hosted app, add its exact HTTPS production origin to backend CORS_ORIGINS alongside the existing frontend origin. This is required for refresh/logout CSRF origin checks. No wildcard origins are needed. Owner activation and GitHub-app access are left for the operator to enable.
