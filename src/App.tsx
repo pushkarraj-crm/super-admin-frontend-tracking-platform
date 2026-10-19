@@ -85,10 +85,15 @@ export default function App() {
             platform owner can use this application.
           </p>
           <p>Signing in here does not upgrade account permissions.</p>
+          {error && <ErrorBox error={error} />}
           <button
             className="button primary"
             onClick={async () => {
-              await endSession();
+              try {
+                await endSession();
+              } catch (error) {
+                setError(error as Error);
+              }
             }}
           >
             Sign out
